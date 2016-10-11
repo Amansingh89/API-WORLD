@@ -1,0 +1,32 @@
+/*!------title Css-----!*/
+#title{
+	text-align: center;
+	font-family: 'Bevan', cursive;
+
+}
+/*!----Artists Css-----!*/
+
+.container{
+			border: 3px black solid;
+			border-radius: 15px;
+						
+			background-color: lightgrey;
+		}
+		
+		
+
+		.search-element{
+			margin-bottom: 50px;
+		}
+
+		.gallery{
+			float:left;
+			padding: 10px;
+			margin-right: 10px;
+
+		}
+
+		.gallery img{
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
