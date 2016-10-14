@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -113,6 +113,28 @@ This element could be removed once the image links worked.  Still here for now t
 
 	</div>
 
+	<br>
+	<br>
+
+
+	
+<div class="container">
+
+		<form action="" method="POST" role="form" id="search1-beer">
+			<legend>Search A Country</legend>
+			<div class="form-group">
+				<label for="">What country info are you looking for</label>
+				<input type="text" class="input-lg form-control" id="" placeholder="Enter country name">
+			</div>
+			<button id="" type="submit" class="btn btn-primary">Search!</button>
+		</form>
+
+		<div id="results1" class="hidden1">
+
+        
+			
+			
+</div>
 
 
 
@@ -123,6 +145,8 @@ This element could be removed once the image links worked.  Still here for now t
 	..........End Content......
 
 	-->
+	<!-- !Artist JS! -->
+
 	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
 	<script>
 
@@ -221,6 +245,7 @@ This element could be removed once the image links worked.  Still here for now t
 
 	});
 
+		// Beer JS
 
 			$("#search-beer button").on('click', function(event) {
 			event.preventDefault();
@@ -277,6 +302,50 @@ This element could be removed once the image links worked.  Still here for now t
 			})
 
 		});
+
+
+		// Country API
+
+			$("#search1-beer button").on('click', function(event) {
+				event.preventDefault();
+				var countrySearched = $("#search1-beer input").val();
+				console.log(countrySearched);
+				var urlSearchcountry = 'https://restcountries.eu/rest/v1/all?q=' + countrySearched;
+
+				$.ajax({
+					url: urlSearchcountry,
+					dataType: 'json'
+				})
+				.success( function( aData ) {
+
+					console.log(aData);
+					var itemsHtml = "";
+					   
+					
+					$.each(aData, function(i, ocountry) {
+
+						if (ocountry['name'] == countrySearched){
+
+							console.log(ocountry.capital);
+
+
+							itemsHtml += '<option value="' + '">Capital : ' + ocountry.capital+'</option>'; 
+							itemsHtml += '<option value="' + '">Population : ' + ocountry.population+'</option>';
+							itemsHtml += '<option value="' + '">Region : ' + ocountry.region+'</option>';
+							itemsHtml += '<option value="' + '">Timezone : ' + ocountry.timezones+'</option>';
+							itemsHtml += '<option value="' + '">Borders : ' + ocountry.borders+'</option>';
+							itemsHtml += '<option value="' + '">Currency : ' + ocountry.currencies+'</option>';
+							itemsHtml += '<option value="' + '">Calling Code : ' + ocountry.callingCodes+'</option>';
+							itemsHtml += '<option value="' + '">Native name : ' + ocountry.nativeName+'</option>';
+							itemsHtml += '<option value="' + '">Alpha3Code : ' + ocountry.alpha3Code+'</option>';
+						}					
+					})
+					$('#results1').removeClass("hidden1");
+					$("#results1").html(itemsHtml);
+				})
+			});
+
+
 
 
 
